@@ -1,12 +1,12 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
 import assign from 'object-assign';
-import LikesConstants from '../constants/LikesConstants';
+import LikeConstants from '../constants/LikeConstants';
 
 var likes = 0;
 var CHANGE_EVENT = 'change';
 
-var LikesStore = assign({}, EventEmitter.prototype, {
+var LikeStore = assign({}, EventEmitter.prototype, {
   getLikes: function() {
     return {'likes': likes};
   },
@@ -33,11 +33,11 @@ var LikesStore = assign({}, EventEmitter.prototype, {
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
-    case LikesConstants.LIKE:
+    case LikeConstants.LIKE:
     likes += 1;
-    LikesStore.emitChange();
+    LikeStore.emitChange();
     break;
   }
 });
 
-module.exports = LikesStore
+module.exports = LikeStore

@@ -401,9 +401,9 @@ var _AppDispatcher = require('../dispatcher/AppDispatcher');
 
 var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 
-var _LikesConstants = require('../constants/LikesConstants');
+var _LikeConstants = require('../constants/LikeConstants');
 
-var _LikesConstants2 = _interopRequireDefault(_LikesConstants);
+var _LikeConstants2 = _interopRequireDefault(_LikeConstants);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -412,14 +412,14 @@ function _interopRequireDefault(obj) {
 var LikesActions = {
   like: function like() {
     _AppDispatcher2.default.dispatch({
-      actionType: _LikesConstants2.default.LIKE
+      actionType: _LikeConstants2.default.LIKE
     });
   }
 };
 
 module.exports = LikesActions;
 
-},{"../constants/LikesConstants":7,"../dispatcher/AppDispatcher":8}],4:[function(require,module,exports){
+},{"../constants/LikeConstants":7,"../dispatcher/AppDispatcher":8}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -486,7 +486,7 @@ var LikeApp = function (_React$Component) {
   _createClass(LikeApp, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_LikeButton2.default, null);
+      return _react2.default.createElement('div', null, _react2.default.createElement(_LikeButton2.default, null), _react2.default.createElement(_LikeButton2.default, null));
     }
   }]);
 
@@ -514,9 +514,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LikesStore = require('../stores/LikesStore');
+var _LikeStore = require('../stores/LikeStore');
 
-var _LikesStore2 = _interopRequireDefault(_LikesStore);
+var _LikeStore2 = _interopRequireDefault(_LikeStore);
 
 var _LikesActions = require('../actions/LikesActions');
 
@@ -552,7 +552,7 @@ var LikeButton = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LikeButton).call(this, state));
 
-    _this.state = _LikesStore2.default.getLikes();
+    _this.state = _LikeStore2.default.getLikes();
     return _this;
   }
 
@@ -561,7 +561,7 @@ var LikeButton = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _LikesStore2.default.addChangeListener(function () {
+      _LikeStore2.default.addChangeListener(function () {
         return _this2._onChange();
       });
     }
@@ -570,14 +570,14 @@ var LikeButton = function (_React$Component) {
     value: function componentWillUnmount() {
       var _this3 = this;
 
-      _LikesStore2.default.removeChangeListener(function () {
+      _LikeStore2.default.removeChangeListener(function () {
         return _this3._onChange();
       });
     }
   }, {
     key: '_onChange',
     value: function _onChange() {
-      this.setState(_LikesStore2.default.getLikes());
+      this.setState(_LikeStore2.default.getLikes());
     }
   }, {
     key: 'render',
@@ -593,7 +593,7 @@ var LikeButton = function (_React$Component) {
 
 module.exports = LikeButton;
 
-},{"../actions/LikesActions":3,"../stores/LikesStore":9,"react":179}],7:[function(require,module,exports){
+},{"../actions/LikesActions":3,"../stores/LikeStore":9,"react":179}],7:[function(require,module,exports){
 'use strict';
 
 var _keymirror = require('keymirror');
@@ -628,9 +628,9 @@ var _objectAssign = require('object-assign');
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _LikesConstants = require('../constants/LikesConstants');
+var _LikeConstants = require('../constants/LikeConstants');
 
-var _LikesConstants2 = _interopRequireDefault(_LikesConstants);
+var _LikeConstants2 = _interopRequireDefault(_LikeConstants);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -639,7 +639,7 @@ function _interopRequireDefault(obj) {
 var likes = 0;
 var CHANGE_EVENT = 'change';
 
-var LikesStore = (0, _objectAssign2.default)({}, _events.EventEmitter.prototype, {
+var LikeStore = (0, _objectAssign2.default)({}, _events.EventEmitter.prototype, {
   getLikes: function getLikes() {
     return { 'likes': likes };
   },
@@ -666,16 +666,16 @@ var LikesStore = (0, _objectAssign2.default)({}, _events.EventEmitter.prototype,
 // Register callback to handle all updates
 _AppDispatcher2.default.register(function (action) {
   switch (action.actionType) {
-    case _LikesConstants2.default.LIKE:
+    case _LikeConstants2.default.LIKE:
       likes += 1;
-      LikesStore.emitChange();
+      LikeStore.emitChange();
       break;
   }
 });
 
-module.exports = LikesStore;
+module.exports = LikeStore;
 
-},{"../constants/LikesConstants":7,"../dispatcher/AppDispatcher":8,"events":1,"object-assign":40}],10:[function(require,module,exports){
+},{"../constants/LikeConstants":7,"../dispatcher/AppDispatcher":8,"events":1,"object-assign":40}],10:[function(require,module,exports){
 (function (process){
 'use strict';
 

@@ -1,9 +1,9 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import LikesConstants from '../constants/LikesConstants';
+import LikeConstants from '../constants/LikeConstants';
 var LikesActions = {
   like: function() {
     AppDispatcher.dispatch({
-      actionType: LikesConstants.LIKE,
+      actionType: LikeConstants.LIKE,
     });
   },
 };

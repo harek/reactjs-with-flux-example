@@ -3,7 +3,10 @@ import LikeButton from './LikeButton.react';
 
 class LikeApp extends React.Component {
   render() {
-    return <LikeButton/>;
+    return <div>
+      <LikeButton/>
+      <LikeButton/>
+    </div>;
   }
 }
 
