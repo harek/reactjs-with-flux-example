@@ -1,18 +1,27 @@
 import React from 'react';
-
+import LikesStore from '../stores/LikesStore';
+import LikesActions from '../actions/LikesActions';
 class LikeButton extends React.Component {
   constructor(state) {
     super(state);
-    this.state = {likes : 0};
+    this.state = LikesStore.getLikes();
   }
 
-  addOne() {
-    this.setState({likes: this.state.likes + 1});
+  componentDidMount() {
+    LikesStore.addChangeListener(() => this._onChange());
+  }
+
+  componentWillUnmount() {
+    LikesStore.removeChangeListener(() => this._onChange());
+  }
+
+  _onChange() {
+      this.setState(LikesStore.getLikes());
   }
 
   render() {
     return <div>
-      {this.state.likes} <button onClick={() => this.addOne()}>+1</button>
+      {this.state.likes} <button onClick={() => LikesActions.like()}>+1</button>
     </div>;
   }
 }
